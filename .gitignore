@@ -59,3 +59,6 @@ Thumbs.db
 # Logs
 *.log
 logs/
+
+# temp storage
+temp_storage/
