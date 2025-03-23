@@ -1,4 +1,5 @@
 import os
+from flask import current_app as app
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
 from app.image_processing.stitching import stitch_images
@@ -18,6 +19,7 @@ def allowed_file(filename):
 
 @main.route("/")
 def index():
+    app.logger.info("Microscope Image Processor API is running!")
     return "Microscope Image Processor API is running!"
 
 @main.route("/upload_images", methods=["POST"])
