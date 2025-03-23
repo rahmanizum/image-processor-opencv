@@ -12,4 +12,6 @@ def create_app():
     from .routes import main
     app.register_blueprint(main)
 
+    app.logger.info("Flask app initialized")
+
     return app

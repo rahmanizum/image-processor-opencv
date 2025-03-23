@@ -1,3 +1,4 @@
+from flask import current_app as app
 import cv2
 
 def zoom_roi(image_path, output_path, magnification=10, method="bilinear"):

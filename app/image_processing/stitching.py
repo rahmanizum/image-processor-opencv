@@ -1,3 +1,4 @@
+from flask import current_app as app
 import cv2
 import os
 import numpy as np
