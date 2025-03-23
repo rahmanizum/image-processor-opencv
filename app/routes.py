@@ -1,6 +1,7 @@
 import os
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
+from app.image_processing.stitching import stitch_images
 
 main = Blueprint("main", __name__)
 
@@ -36,3 +37,18 @@ def upload_images():
         "message": f"{len(saved_files)} image(s) uploaded successfully.",
         "files": saved_files
     }), 200
+
+@main.route("/stitch_images", methods=["GET"])
+def stitch():
+    try:
+        image_dir = "temp_storage"
+        output_path = "temp_storage/output/stitched_output.jpg"
+        result = stitch_images(image_dir, output_path)
+
+        return jsonify({
+            "message": "Images stitched successfully!",
+            "stitched_image": result
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
